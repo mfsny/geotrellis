@@ -70,13 +70,13 @@ More information is also available on the [GeoTrellis website](http://www.azavea
   // rendering the PNG of the wieghted overlay.
 
   rendered.run match {
-    process.Complete(png, history) =>
+    case process.Complete(png, history) =>
       // return the PNG as an Array of Bytes
       // for spray:
       respondWithMediaType(MediaTypes.`image/png`) {
         complete { png }
       }
-    process.Failure(message, history) =>
+    case process.Failure(message, history) =>
       // handle the failure.
       // for spray:
       failWith { new RuntimeException(message) }
